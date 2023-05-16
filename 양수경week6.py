@@ -1,7 +1,7 @@
 graph_list = {
     0 : set([1]),
     1 : set([0,2,3]),
-    2 : set([1,3,4]),
+    2 : set([3,1,4]),
     3 : set([1,2,4,5]),
     4 : set([2,3]),
     5 : set([3,6,7]),
@@ -9,7 +9,7 @@ graph_list = {
     7 : set([5]),
     8 : set([6])
 }
-root = 0
+root = 0 #input 으로 받기 ! 
 
 from collections import deque
 
@@ -25,8 +25,10 @@ def BFS(graph, root):
         if current not in visited:
             # 3. 방문했다고 기록
             visited.append(current)
-
-            queue += graph[current] - set(visited)
+            if current in graph:
+                temp =list(set(graph[current]-set(visited)))
+                temp.sort()
+                queue += temp
             # 여기서 방문된 상태이다.
 
             # 필요한 처리를 해주세요 // current 노드를 가지고 필요한 처리 진행
@@ -44,7 +46,10 @@ def DFS(graph,root):
         if current not in visited:
             # 3. 방문했다고 기록
             visited.append(current)
-            stack += graph[current] - set(visited)
+            if current in graph:
+                temp = list(set(graph[current] - set(visited)))
+                temp.sort()
+                stack += temp
             # 방문된 상태에서 문제가 요구하는 처리를 진행할 것
     return visited
 

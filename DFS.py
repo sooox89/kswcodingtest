@@ -1,7 +1,7 @@
 # Tree list / DFS
 n = 5
 graph = [[] for _ in range(n+1)]
-
+print(graph)
 graph[1] = [2,3]
 graph[2] =[]
 graph[3] = [4,5]
@@ -9,6 +9,7 @@ graph[4] = []
 graph[5] = []
 
 visited = [False]*(n+1)
+
 def DFS(graph, idx, visited):
     stack = [idx]
     visited[idx] = True
